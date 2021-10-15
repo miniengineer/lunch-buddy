@@ -9,7 +9,7 @@ const App = () => {
         <Route exact path="/" component={Posts} />
       </Switch>
     </React.Fragment>
-  )
-}
+  );
+};
 
 export default App;
