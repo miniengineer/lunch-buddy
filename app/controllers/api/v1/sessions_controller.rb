@@ -1,4 +1,4 @@
 class Api::V1::SessionsController < Devise::SessionsController
-  def create
-  end
+  respond_to :json
+  skip_before_action :verify_authenticity_token, :only => :create
 end
