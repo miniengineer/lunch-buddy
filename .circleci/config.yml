@@ -34,10 +34,12 @@ jobs:
       PGPASSWORD: ''
       PGUSER: minira
       RAILS_ENV: test
-      BUNDLER_VERSION: 2.6.5
+      BUNDLER_VERSION: 2.1.4
     parallelism: 3
     steps:
       - checkout
+      - ruby/install:
+          version: '2.6.5'
       - ruby/install-deps
       - node/install-packages:
           cache-key: yarn.lock
