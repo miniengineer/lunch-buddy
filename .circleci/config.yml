@@ -34,7 +34,7 @@ jobs:
       PGPASSWORD: ''
       PGUSER: minira
       RAILS_ENV: test
-      BUNDLER_VERSION: 2.1.4
+      BUNDLER_VERSION: 2.6.5
     parallelism: 3
     steps:
       - checkout
