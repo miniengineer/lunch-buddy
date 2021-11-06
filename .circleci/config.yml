@@ -32,8 +32,9 @@ jobs:
       BUNDLE_RETRY: '3'
       PGHOST: 127.0.0.1
       PGPASSWORD: ''
-      PGUSER: circleci-demo-ruby
+      PGUSER: minira
       RAILS_ENV: test
+      BUNDLER_VERSION: 2.1.4
     parallelism: 3
     steps:
       - checkout
