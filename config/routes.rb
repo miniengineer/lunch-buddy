@@ -6,8 +6,6 @@ Rails.application.routes.draw do
       resources :posts
     end
   end
+
   root 'pages#index'
-
-
-  get '*path', to: 'pages#index', via: :all
 end
