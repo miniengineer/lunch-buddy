@@ -1,11 +1,11 @@
-Rails.application.routes.draw do
-  devise_for :users, path: 'api/v1/users', controllers: { sessions: 'api/v1/sessions', registrations: 'api/v1/registrations' }
+# frozen_string_literal: true
 
-  namespace :api do
-    namespace :v1 do
-      resources :posts
-    end
-  end
+Rails.application.routes.draw do
+  devise_for :users, path: 'api/v1/users', controllers:
+    {
+      sessions: 'api/v1/sessions',
+      registrations: 'api/v1/registrations'
+    }
 
   root 'pages#index'
 end

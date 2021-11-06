@@ -1,0 +1,92 @@
+require: rubocop-rails
+
+AllCops:
+  NewCops: enable
+  SuggestExtensions: false
+  Exclude:
+    - node_modules/**/*
+    - vendor/**/*
+    - db/schema.rb
+    - db/migrate/**/*
+    - config/initializers/*
+    - config/environments/*
+    - bin/*
+
+Rails:
+  Enabled: true
+
+# Allow no documentation above class definition
+Style/Documentation:
+  Enabled: false
+
+# Allow lines up to 98 characters long (default was 80)
+Layout/LineLength:
+  Max: 98
+
+### Coding Style ###
+
+# Don't align things based on anything other than typical indentation
+#
+# Some disallowed examples:
+#
+#   variable = if condition
+#                a
+#              else
+#                b
+#              end
+#   hash = {
+#     short:        10,
+#     a_bit_longer: 2
+#   }
+
+Layout/ExtraSpacing:
+  AllowForAlignment: false
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: start_of_line
+  AutoCorrect: true
+
+Layout/FirstArgumentIndentation:
+  EnforcedStyle: consistent
+
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+
+Layout/ArgumentAlignment:
+  EnforcedStyle: with_fixed_indentation
+
+Layout/ParameterAlignment:
+  EnforcedStyle: with_fixed_indentation
+
+Layout/CaseIndentation:
+  EnforcedStyle: end
+
+Layout/FirstArrayElementLineBreak:
+  Enabled: true
+
+Layout/FirstHashElementLineBreak:
+  Enabled: true
+
+Layout/FirstMethodArgumentLineBreak:
+  Enabled: true
+
+Layout/FirstMethodParameterLineBreak:
+  Enabled: true
+
+Layout/MultilineArrayLineBreaks:
+  Enabled: true
+
+Layout/MultilineHashKeyLineBreaks:
+  Enabled: true
+
+Layout/MultilineAssignmentLayout:
+  Enabled: true
