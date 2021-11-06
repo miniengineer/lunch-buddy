@@ -2,7 +2,8 @@ version: 2
 jobs:
   build:
     docker:
-      # specify the version you desire here
+      # specify the ruby version here
+      # it should be the same as in your Gemfile
       - image: circleci/ruby:2.6.5
         environment:
           BUNDLE_JOBS: 3
@@ -39,10 +40,10 @@ jobs:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
-      # run tests!
+      # run Rubocop
       - run:
           name: Rubocop
-          command: bundle exec rubocop 
+          command: bundle exec rubocop
       # collect reports
       - store_test_results:
           path: /tmp/test-results
