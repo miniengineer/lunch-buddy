@@ -5,6 +5,7 @@ import Signup from './Signup';
 import Home from './Home';
 import UserContextProvider, { UserContext } from '../context/UserContext';
 import Profile from './Profile';
+import 'bootstrap/dist/css/bootstrap.css';
 
 const App = () => {
   return (
