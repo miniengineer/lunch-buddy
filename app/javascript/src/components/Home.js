@@ -1,8 +1,8 @@
 import React from 'react';
-import Signin from './Signin';
+import { Redirect } from 'react-router';
 
 const Home = () => {
-  return <Signin />;
+  return <Redirect to="/signin" />;
 };
 
 export default Home;
