@@ -38,13 +38,17 @@ const Signup = () => {
       return;
     }
 
-    const response = await Api.signup(email, password, passwordConfirmation);
+    let response;
+    try {
+      response = await Api.signup(email, password, passwordConfirmation);
+    } catch (e) {
+      if (!e.response) {
+        alert('Network error');
+      }
+    }
+
     if (response.statusText === 'Created') {
       setSignedIn(true);
-    } else {
-      // TODO
-      // better error handling
-      alert('Some error happened on the server');
     }
   };
 
