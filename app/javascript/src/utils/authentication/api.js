@@ -17,15 +17,16 @@ export const signin = async (email, password) => {
   return response;
 };
 
-export const signup = async (email, password) => {
+export const signup = async (email, password, passwordConfirmation) => {
   const options = {
     method: 'POST',
-    url: '/api/v1/users/sign_in',
+    url: '/api/v1/users',
     headers: { Accept: 'application/json' },
     data: {
       user: {
         email,
         password,
+        passwordConfirmation,
       },
     },
   };
