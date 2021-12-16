@@ -45,7 +45,7 @@ const Signin = () => {
     }
 
     if (response.statusText === 'Created') {
-      setSignedIn(true);
+      setSignedIn('true');
     }
   };
 
@@ -87,7 +87,7 @@ const Signin = () => {
       <p>
         New to LunchBuddy? Then <Link to="/sign_up">sign up</Link>
       </p>
-      {isSignedIn ? <Redirect to="/profile" /> : null}
+      {isSignedIn === 'true' ? <Redirect to="/profile" /> : null}
     </Container>
   );
 };

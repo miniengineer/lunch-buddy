@@ -48,7 +48,7 @@ const Signup = () => {
     }
 
     if (response.statusText === 'Created') {
-      setSignedIn(true);
+      setSignedIn('true');
     }
   };
 
@@ -101,7 +101,7 @@ const Signup = () => {
       <p>
         Already have an account? Then <Link to="/sign_in">sign in</Link>
       </p>
-      {isSignedIn ? <Redirect to="/profile" /> : null}
+      {isSignedIn === 'true' ? <Redirect to="/profile" /> : null}
     </Container>
   );
 };
