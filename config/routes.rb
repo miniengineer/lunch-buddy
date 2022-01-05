@@ -7,5 +7,6 @@ Rails.application.routes.draw do
       registrations: 'api/v1/registrations'
     }
 
-  root 'pages#index'
+  root 'home#index'
+  get '*path', to: 'home#index', via: :all
 end

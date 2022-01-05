@@ -1,15 +1,29 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import Posts from '../components/Posts';
+import React, { useContext } from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import Signin from './Signin';
+import Signup from './Signup';
+import Home from './Home';
+import UserContextProvider, { UserContext } from '../context/UserContext';
+import Profile from './Profile';
+import 'bootstrap/dist/css/bootstrap.css';
 
 const App = () => {
   return (
-    <React.Fragment>
+    <UserContextProvider>
       <Switch>
-        <Route exact path="/" component={Posts} />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/sign_in" component={Signin} />
+        <Route exact path="/sign_up" component={Signup} />
+        <ProtectedRoute path="/profile" component={Profile} />
       </Switch>
-    </React.Fragment>
+    </UserContextProvider>
   );
+};
+
+const ProtectedRoute = (props) => {
+  const { isSignedIn } = useContext(UserContext);
+
+  return isSignedIn ? <Route {...props} /> : <Redirect to="/sign_in" />;
 };
 
 export default App;
