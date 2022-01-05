@@ -1,10 +1,14 @@
 import { request } from 'axios';
 
+const baseRequest = (options) => {
+  options.headers = { Accept: 'application/json' };
+  return request(options);
+};
+
 export const signin = async (email, password) => {
   const options = {
     method: 'POST',
     url: '/api/v1/users/sign_in',
-    headers: { Accept: 'application/json' },
     data: {
       user: {
         email,
@@ -13,7 +17,7 @@ export const signin = async (email, password) => {
     },
   };
 
-  const response = await request(options);
+  const response = await baseRequest(options);
   return response;
 };
 
@@ -21,7 +25,6 @@ export const signup = async (email, password, passwordConfirmation) => {
   const options = {
     method: 'POST',
     url: '/api/v1/users',
-    headers: { Accept: 'application/json' },
     data: {
       user: {
         email,
@@ -31,7 +34,7 @@ export const signup = async (email, password, passwordConfirmation) => {
     },
   };
 
-  const response = await request(options);
+  const response = await baseRequest(options);
   return response;
 };
 
@@ -39,9 +42,8 @@ export const isAuthed = async () => {
   const options = {
     method: 'GET',
     url: '/api/v1/authentication-check',
-    headers: { Accept: 'application/json' },
   };
 
-  const response = await request(options);
+  const response = await baseRequest(options);
   return response;
 };
