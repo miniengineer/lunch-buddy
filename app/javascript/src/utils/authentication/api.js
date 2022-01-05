@@ -38,6 +38,21 @@ export const signup = async (email, password, passwordConfirmation) => {
   return response;
 };
 
+export const signout = async (email) => {
+  const options = {
+    method: 'DELETE',
+    url: '/api/v1/users/sign_out',
+    data: {
+      user: {
+        email,
+      },
+    },
+  };
+
+  const response = await baseRequest(options);
+  return response;
+};
+
 export const isAuthed = async () => {
   const options = {
     method: 'GET',
