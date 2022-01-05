@@ -9,7 +9,7 @@ require 'active_job/railtie'
 require 'active_record/railtie'
 
 # Active Storage facilitates uploading files to a cloud storage service like Amazon S3,
-# Google Cloud Storage, or Microsoft Azure Storage and attaching those files to Active Record objects. 
+# Google Cloud Storage and attaching those files to Active Record objects.
 # require 'active_storage/engine'
 require 'action_controller/railtie'
 require 'action_mailer/railtie'
