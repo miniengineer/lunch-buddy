@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 import Container from './Container';
 
 const Signin = () => {
-  const { signedStatus, setSignedStatus } = useContext(UserContext);
+  const { signedStatus, setSignedStatus, setEmail } = useContext(UserContext);
   const [signinFormInputs, setSigninFormInputs] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
@@ -44,8 +44,11 @@ const Signin = () => {
       }
     }
 
-    if (response.statusText === 'Created') {
+    // TODO
+    // a better/more discreet way to check whether response is successfull?
+    if (response.status === 201) {
       setSignedStatus('signed_in');
+      setEmail(response.data.email);
     }
   };
 

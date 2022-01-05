@@ -5,11 +5,12 @@ export const UserContext = React.createContext({});
 
 const UserContextProvider = ({ children }) => {
   const [signedStatus, setSignedStatus] = useState('unknown');
+  const [email, setEmail] = useState('');
 
   useEffect(() => {
     Api.isAuthed()
       .then((response) => {
-        if (response.statusText === 'OK') {
+        if (response.status === 200) {
           setSignedStatus('signed_in');
         }
       })
@@ -20,6 +21,7 @@ const UserContextProvider = ({ children }) => {
 
         if (e.response.status === 401) {
           setSignedStatus('signed_out');
+          setEmail('');
           return;
         }
         // pass empty array to call the endpoint only on component mount
@@ -27,7 +29,7 @@ const UserContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ signedStatus, setSignedStatus }}>
+    <UserContext.Provider value={{ signedStatus, setSignedStatus, email, setEmail }}>
       {children}
     </UserContext.Provider>
   );
