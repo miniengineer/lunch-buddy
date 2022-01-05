@@ -38,7 +38,7 @@ export const signup = async (email, password, passwordConfirmation) => {
 export const isAuthed = async () => {
   const options = {
     method: 'GET',
-    url: '/api/v1/me',
+    url: '/api/v1/authentication-check',
     headers: { Accept: 'application/json' },
   };
 
