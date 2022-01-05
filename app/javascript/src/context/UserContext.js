@@ -4,13 +4,13 @@ import * as Api from '../utils/authentication/api';
 export const UserContext = React.createContext({});
 
 const UserContextProvider = ({ children }) => {
-  const [isSignedIn, setSignedIn] = useState('unknown');
+  const [signedStatus, setSignedStatus] = useState('unknown');
 
   useEffect(() => {
     Api.isAuthed()
       .then((response) => {
         if (response.statusText === 'OK') {
-          setSignedIn('true');
+          setSignedStatus('signed_in');
         }
       })
       .catch((e) => {
@@ -19,7 +19,7 @@ const UserContextProvider = ({ children }) => {
         }
 
         if (e.response.status === 401) {
-          setSignedIn('false');
+          setSignedStatus('signed_out');
           return;
         }
         // pass empty array to call the endpoint only on component mount
@@ -27,7 +27,9 @@ const UserContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ isSignedIn, setSignedIn }}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{ signedStatus, setSignedStatus }}>
+      {children}
+    </UserContext.Provider>
   );
 };
 
