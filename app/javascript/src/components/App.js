@@ -21,10 +21,10 @@ const App = () => {
 };
 
 const ProtectedRoute = (props) => {
-  const { signedStatus } = useContext(UserContext);
-  if (signedStatus === 'unknown') return null;
+  const { signedInStatus } = useContext(UserContext);
+  if (signedInStatus === 'unknown') return null;
 
-  return signedStatus === 'signed_in' ? <Route {...props} /> : <Redirect to="/sign_in" />;
+  return signedInStatus === 'signed_in' ? <Route {...props} /> : <Redirect to="/sign_in" />;
 };
 
 export default App;

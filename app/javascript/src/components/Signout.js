@@ -3,7 +3,7 @@ import * as Api from '../utils/authentication/api';
 import { UserContext } from '../context/UserContext';
 
 const Signout = ({ email }) => {
-  const { setSignedStatus, setEmail } = useContext(UserContext);
+  const { setSignedInStatus, setEmail } = useContext(UserContext);
 
   const handleSignout = async (e) => {
     e.preventDefault();
@@ -23,7 +23,7 @@ const Signout = ({ email }) => {
     }
 
     if (response.status === 204) {
-      setSignedStatus('signed_out');
+      setSignedInStatus('signed_out');
       setEmail('');
     }
   };

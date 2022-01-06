@@ -4,14 +4,14 @@ import * as Api from '../utils/authentication/api';
 export const UserContext = React.createContext({});
 
 const UserContextProvider = ({ children }) => {
-  const [signedStatus, setSignedStatus] = useState('unknown');
+  const [signedInStatus, setSignedInStatus] = useState('unknown');
   const [email, setEmail] = useState('');
 
   useEffect(() => {
     Api.isAuthed()
       .then((response) => {
         if (response.status === 200) {
-          setSignedStatus('signed_in');
+          setSignedInStatus('signed_in');
         }
       })
       .catch((e) => {
@@ -20,7 +20,7 @@ const UserContextProvider = ({ children }) => {
         }
 
         if (e.response.status === 401) {
-          setSignedStatus('signed_out');
+          setSignedInStatus('signed_out');
           setEmail('');
           return;
         }
@@ -29,7 +29,7 @@ const UserContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ signedStatus, setSignedStatus, email, setEmail }}>
+    <UserContext.Provider value={{ signedInStatus, setSignedInStatus, email, setEmail }}>
       {children}
     </UserContext.Provider>
   );
