@@ -1,9 +1,6 @@
-import { request } from 'axios';
+import axios, { request } from 'axios';
 
-const baseRequest = (options) => {
-  options.headers = { Accept: 'application/json' };
-  return request(options);
-};
+axios.defaults.headers.common['Accept'] = 'application/json';
 
 export const signin = async (email, password) => {
   const options = {
@@ -17,7 +14,7 @@ export const signin = async (email, password) => {
     },
   };
 
-  const response = await baseRequest(options);
+  const response = await request(options);
   return response;
 };
 
@@ -29,12 +26,12 @@ export const signup = async (email, password, passwordConfirmation) => {
       user: {
         email,
         password,
-        passwordConfirmation,
+        password_confirmation: passwordConfirmation,
       },
     },
   };
 
-  const response = await baseRequest(options);
+  const response = await request(options);
   return response;
 };
 
@@ -49,7 +46,7 @@ export const signout = async (email) => {
     },
   };
 
-  const response = await baseRequest(options);
+  const response = await request(options);
   return response;
 };
 
@@ -59,6 +56,6 @@ export const isAuthed = async () => {
     url: '/api/v1/authentication-check',
   };
 
-  const response = await baseRequest(options);
+  const response = await request(options);
   return response;
 };
