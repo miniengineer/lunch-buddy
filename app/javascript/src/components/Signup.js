@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from 'react';
+import React, { useState, useContext, useReducer } from 'react';
 import * as Api from '../utils/authentication/api';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
@@ -15,6 +15,7 @@ const Signup = () => {
       passwordConfirmation: '',
     }
   );
+  const [errors, setErrors] = useState([]);
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -44,6 +45,9 @@ const Signup = () => {
     } catch (e) {
       if (!e.response) {
         alert('Network error');
+      } else {
+        let errorsList = Object.entries(e.response.data.errors).map((err) => `${err[0]} ${err[1]}`);
+        setErrors(errorsList);
       }
     }
 
@@ -61,6 +65,7 @@ const Signup = () => {
   return (
     <Container>
       <h1>Create an account</h1>
+      <p className="text-danger">{errors ?? errors.join(', ')}</p>
       <form>
         <div className="form-group">
           <label htmlFor="email"></label>
