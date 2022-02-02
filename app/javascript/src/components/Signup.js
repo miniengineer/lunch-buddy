@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from 'react';
+import React, { useState, useContext, useReducer } from 'react';
 import * as Api from '../utils/authentication/api';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 import Container from './Container';
 
 const Signup = () => {
-  const { isSignedIn, setSignedIn } = useContext(UserContext);
+  const { signedInStatus, setSignedInStatus, setEmail } = useContext(UserContext);
   const [signupFormInputs, setSignupFormInputs] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
@@ -15,6 +15,7 @@ const Signup = () => {
       passwordConfirmation: '',
     }
   );
+  const [errors, setErrors] = useState([]);
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -44,11 +45,15 @@ const Signup = () => {
     } catch (e) {
       if (!e.response) {
         alert('Network error');
+      } else {
+        let errorsList = Object.entries(e.response.data.errors).map((err) => `${err[0]} ${err[1]}`);
+        setErrors(errorsList);
       }
     }
 
-    if (response.statusText === 'Created') {
-      setSignedIn(true);
+    if (response.status === 201) {
+      setSignedInStatus('signed_in');
+      setEmail(response.data.email);
     }
   };
 
@@ -60,6 +65,7 @@ const Signup = () => {
   return (
     <Container>
       <h1>Create an account</h1>
+      <p className="text-danger">{errors ?? errors.join(', ')}</p>
       <form>
         <div className="form-group">
           <label htmlFor="email"></label>
@@ -101,7 +107,7 @@ const Signup = () => {
       <p>
         Already have an account? Then <Link to="/sign_in">sign in</Link>
       </p>
-      {isSignedIn ? <Redirect to="/profile" /> : null}
+      {signedInStatus === 'signed_in' ? <Redirect to="/profile" /> : null}
     </Container>
   );
 };

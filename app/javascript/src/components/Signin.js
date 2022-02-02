@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 import Container from './Container';
 
 const Signin = () => {
-  const { isSignedIn, setSignedIn } = useContext(UserContext);
+  const { signedInStatus, setSignedInStatus, setEmail } = useContext(UserContext);
   const [signinFormInputs, setSigninFormInputs] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
@@ -44,8 +44,11 @@ const Signin = () => {
       }
     }
 
-    if (response.statusText === 'Created') {
-      setSignedIn(true);
+    // TODO
+    // a better/more discreet way to check whether response is successfull?
+    if (response.status === 201) {
+      setSignedInStatus('signed_in');
+      setEmail(response.data.email);
     }
   };
 
@@ -87,7 +90,7 @@ const Signin = () => {
       <p>
         New to LunchBuddy? Then <Link to="/sign_up">sign up</Link>
       </p>
-      {isSignedIn ? <Redirect to="/profile" /> : null}
+      {signedInStatus === 'signed_in' ? <Redirect to="/profile" /> : null}
     </Container>
   );
 };

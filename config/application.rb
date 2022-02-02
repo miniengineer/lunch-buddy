@@ -7,10 +7,14 @@ require 'rails'
 require 'active_model/railtie'
 require 'active_job/railtie'
 require 'active_record/railtie'
-require 'active_storage/engine'
+
+# Active Storage facilitates uploading files to a cloud storage service like Amazon S3,
+# Google Cloud Storage and attaching those files to Active Record objects.
+# require 'active_storage/engine'
 require 'action_controller/railtie'
 require 'action_mailer/railtie'
-require 'action_mailbox/engine'
+# Action Mailer allows you to send emails from your application using mailer classes and views.
+# require 'action_mail box/engine'
 require 'action_text/engine'
 require 'action_view/railtie'
 require 'action_cable/engine'

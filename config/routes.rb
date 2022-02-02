@@ -7,6 +7,12 @@ Rails.application.routes.draw do
       registrations: 'api/v1/registrations'
     }
 
+  namespace :api do
+    namespace :v1 do
+      get '/authentication-check', to: 'profile#index'
+    end
+  end
+
   root 'home#index'
   get '*path', to: 'home#index', via: :all
 end
