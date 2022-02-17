@@ -7,5 +7,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable
 
-  has_many :lunch_places
+  has_many :lunch_places, dependent: :destroy
 end
