@@ -5,4 +5,5 @@ class LunchPlace < ApplicationRecord
 
   validates :user_id, presence: true
   validates :google_places_id, uniqueness: true
+  validates_uniqueness_of :google_places_id, scope: :user
 end
