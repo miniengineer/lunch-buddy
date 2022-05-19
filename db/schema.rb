@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2022_02_17_011400) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["google_places_id"], name: "index_lunch_places_on_google_places_id", unique: true
+    t.index ["google_places_id", "user_id"], name: "index_lunch_places_on_google_places_id_and_user_id", unique: true
     t.index ["user_id"], name: "index_lunch_places_on_user_id"
   end
 
